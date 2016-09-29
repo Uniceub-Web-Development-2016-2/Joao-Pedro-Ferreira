@@ -10,17 +10,21 @@ class ResourceController
 	
 	}
 	private function search($request) {
-		$query = 'SELECT * FROM '.$request->getResource().' WHERE '.self::queryParams($request->getParameters());
+		$query = 'SELECT * FROM bd_combustivel.'.$request->getResource().' WHERE '.self::queryParams($request->getParameters());
+		
 		$result = (new DBConnector())->query($query);
+		
 		return $result->fetchAll(PDO::FETCH_ASSOC);
 	}
 		
 	private function queryParams($params) {
 		$query = "";		
+		
 		foreach($params as $key => $value) {
 			$query .= $key.' = '.'"'.$value.'"'.' AND ';	
 		}
 		$query = substr($query,0,-5);
+		
 		return $query;
 	}
 	
