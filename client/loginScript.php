@@ -1,5 +1,7 @@
 <?php
  
+session_start();
+
  include('httpful.phar');
  
  if($_POST["email_usuario"] != null && $_POST["psw_usuario"] != null)
@@ -16,9 +18,15 @@
  	
  	$array = json_decode($response->body, true)[0];
  	
+ 	// if(!empty($array) && $array["email_usuario"] == $_POST["email_usuario"] && $array["psw_usuario"] == $array["psw_usuario"]) 
+ 	// 	header("Location: page.html");
+ 		if(!empty($array) && $array["email_usuario"] == $_POST["email_usuario"] && $array["psw_usuario"] == $array["psw_usuario"]){
+  		$_SESSION["email_usuario"] = $array["email_usuario"];
+ 		$_SESSION["nme_usuario"] = $array["nme_usuario"];
+		$_SESSION["idt_usuario"] = $array["idt_usuario"];
+  		header("Location: perfil.php");
  
- 	if(!empty($array) && $array["email_usuario"] == $_POST["email_usuario"] && $array["psw_usuario"] == $array["psw_usuario"]) 
- 		header("Location: page.html");
+ 	}
  
  	else
  		echo "Pode não mano veio!";
