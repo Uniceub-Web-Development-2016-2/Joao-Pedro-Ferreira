@@ -24,9 +24,9 @@ class ResourceController
 		{
 			return $this->login($request);
 		}
-		if($request->getMethod() == "POST" && $request->getOperation() == "gasolina")
+		if($request->getMethod() == "GET" && $request->getOperation() == "verificarCombustivel")
 		{
-			return $this->gasolina($request);
+			return $this->verificarCombustivel($request);
 		}
 
 		if($request->getMethod() == "GET" && $request->getOperation() == "verValor")
@@ -37,39 +37,16 @@ class ResourceController
 	
 	}
 
-	public function gasolina($request) {
-		
-		//var_dump($request->getBody());
-
-				$criteria = "";
-                $array = json_decode($request->getBody(), true);
-                foreach($array as $key => $value) {
-                                $criteria .= $key." = '".$value."' AND ";
-                 
-                }
-                $variavel = (substr($criteria, -20, -5));
-
-
-		$query = 'SELECT * FROM bd_combustivel.ta_valor WHERE cod_posto = 1';
-		//'.$variavel;
-		$result = (new DBConnector())->query($query);
-		
-		$resultado = $result->fetchAll(PDO::FETCH_ASSOC);
-            
-        if(empty($resultado)){
-			$bodyInsert = $request->getBody();
-            $queryInsert = 'INSERT INTO bd_combustivel.ta_valor('.$this->getColumns($bodyInsert).') VALUES ('.$this->getValues($bodyInsert).')';
-            var_dump($queryInsert);
-			//return (new DBConnector())->query($queryInsert);
-
-            }else{
- 				$bodyUpdate = $request->getBody();
-            	$queryUpdate = 'UPDATE bd_combustivel.ta_valor SET '. $this->getUpdateCriteria($bodyUpdate);
-            	//return (new DBConnector())->query($queryUpdate);
-var_dump($queryUpdate);
-            }
+	public function verificarCombustivel($request) {
 		
 
+		$query = 'SELECT valor.var_valor, valor.cod_combustivel, valor.cod_posto, valor.idt_valor FROM ta_valor valor 
+				INNER JOIN tb_posto posto ON posto.idt_posto = valor.cod_posto
+				INNER JOIN tb_usuario usuario ON usuario.idt_usuario = posto.cod_usuario 
+				WHERE '.self::queryParams($request->getParameters());
+
+				$result = (new DBConnector())->query($query); 
+                return $result->fetchAll(PDO::FETCH_ASSOC);
 	}	
 	public function verValor($request) {
 
@@ -125,10 +102,31 @@ var_dump($queryUpdate);
 	}
 	
 	private function update($request) {
-                $body = $request->getBody();
-                $resource = $request->getResource();
-                $query = 'UPDATE bd_combustivel.'.$resource.' SET '. $this->getUpdateCriteria($body);
-		return $query;
+
+
+				if($request->getBody()){
+			
+			$parametroQuery = "";
+			$ultimo ="";
+			$colunas = json_decode($request->getBody());
+			foreach($colunas as $key => $value) {
+
+				if($key != 'idt_valor')
+					$parametroQuery .= $key.' = '.'"'.$value.'"'.' , ';	
+					$ultimo= $key.'='.$value;
+		
+			}
+
+			
+			
+		 $parametroQuery = substr($parametroQuery,0,-3);
+
+		$query = 'UPDATE bd_combustivel.'.$request->getResource().' SET '.$parametroQuery.' WHERE '.$ultimo;
+		 	$result = (new DBConnector())->query($query);
+
+		 	return $result;
+		}
+
 
         }
 	
@@ -150,12 +148,13 @@ var_dump($queryUpdate);
 		$criteria = "";
 		$where = " WHERE ";
 		$array = json_decode($json, true);
+		
 		foreach($array as $key => $value) {
 			if($key != 'id')
 				$criteria .= $key." = '".$value."',";
-			
+				$ultimo= $key.'='.$value;
 		}
-		return substr($criteria, 0, -1).$where." id = ".$array['id'];
+		return substr($criteria, 0, -1).$where.$ultimo;
 	}	
 
 private function getUpdateCriteria2($json)
@@ -168,7 +167,7 @@ private function getUpdateCriteria2($json)
 				$criteria .= $key." = '".$value."',";
 			
 		}
-		return substr($criteria, 0, -1).$where." idt = ".$array['id'];
+		return substr($criteria, 0, -3).$where." idt = ".$array['id'];
 	}
 
 	private function getColumns($json)
@@ -197,8 +196,8 @@ private function getUpdateCriteria2($json)
 		$query = substr($query,0,-5);
 		return $query;
 	}
-
-	
+   
+ 
 		
 }
 
