@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-<link rel="stylesheet" type="text/css" href="../client/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../client/css/cadastro.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/cadastro.css">
 
 </head>
 <body>
@@ -25,7 +25,7 @@
           <input type="password" name="psw_usuario" class="form-control input-lg" id="password" placeholder="Senha*" required="" /> 
           <input type="integer" name="cpf_usuario" class="form-control input-lg" id="cpf" placeholder="CPF*" required="" />
 
-          <input type="integer" name="cnpj_usuario" class="form-control input-lg" id="cnpj" placeholder="CNPJ" />
+          
           
           
           <div class="pwstrength_viewport_progress"></div>

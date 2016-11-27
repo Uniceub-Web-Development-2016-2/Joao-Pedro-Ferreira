@@ -29,8 +29,14 @@ session_start();
  	}
  
  	else
- 		echo "Pode não mano veio!";
+
+ 		header('location:loginNot.php');
+
  		//chamar página de erro
+
  }
- 
+
+  
  ?>
+
+ <a href= "logionNot.php"></a>

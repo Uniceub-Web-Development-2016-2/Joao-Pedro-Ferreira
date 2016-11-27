@@ -7,7 +7,7 @@ include('httpful.phar');
 
 if($_POST["email_usuario"] != null && $_POST["psw_usuario"] != null)
  {
- 	$cadastrar_array = array('email_usuario' => $_POST["email_usuario"], 'psw_usuario' =>$_POST["psw_usuario"],'cod_perfil' =>$_POST["cod_perfil"],'nme_usuario' =>$_POST["nme_usuario"],'cpf_usuario' =>$_POST["cpf_usuario"],'cnpj_usuario' =>$_POST["cnpj_usuario"]);
+ 	$cadastrar_array = array('email_usuario' => $_POST["email_usuario"], 'psw_usuario' =>$_POST["psw_usuario"],'cod_perfil' =>$_POST["cod_perfil"],'nme_usuario' =>$_POST["nme_usuario"],'cpf_usuario' =>$_POST["cpf_usuario"]);
  
  	$url = "http://localhost/servidor/tb_usuario/";
 

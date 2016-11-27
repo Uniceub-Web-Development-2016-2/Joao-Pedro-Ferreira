@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="../client/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../client/css/login.css">
-<link rel="stylesheet" type="text/css" href="../js/login.js">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="js/login.js">
 </head>
 
 <body>

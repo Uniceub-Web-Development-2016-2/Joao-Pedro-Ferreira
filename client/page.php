@@ -71,9 +71,7 @@ if( @$_GET['token'] === md5(session_id()) ){
                       <li>
                         <a href="combustiveis.php">Combustiveis proximos</a>
                     </li>
-                    <li>
-                        <a href="anunciar.php">Anunciar combustivel</a>
-                    </li>
+                 
                     <li>
                         <a href="postos.php">Meus Postos</a>
                     </li>

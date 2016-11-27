@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <script src="js/jquery.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="../client/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../js/login.js">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="js/login.js">
+
 </head>
 <script type="text/javascript">
   
@@ -63,11 +64,16 @@ $('#endereco_posto').val('JOAO');
   
   <div >
     
-    
     <div class="col-md-10">
       <table class="table table-striped comboGenero"></table>
-      
-      
+  
+       <br>
+       </br>
+
+      <form class="form-signin"  action="page.php">
+
+                <center> <button class="btn btn-danger" type="submit" onclick="submitSignIn()">Voltar</button></center>
+            </form>
 
   	</div>    
   
@@ -75,5 +81,9 @@ $('#endereco_posto').val('JOAO');
 </div>
 
 </body>
-  <center><form action="page.php" method="GET"> <input type="submit" value="Voltar"/></form></center>
+
+
+ 
+
+
 </html>

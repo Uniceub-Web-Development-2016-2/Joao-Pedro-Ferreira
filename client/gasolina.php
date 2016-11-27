@@ -2,17 +2,17 @@
  
  include('httpful.phar');
 
- if($_POST["valor"] != null && $_POST["gasolina"] != null && $_POST["posto"] != null)
+ if($_POST["valor"] != null && $_POST["gasolina"] != null && $_POST["posto"] != null && $_POST['idValor'])
  {
- 	$login_array = array('var_valor' => $_POST["valor"], 'cod_combustivel' =>$_POST["gasolina"], 'cod_posto' =>$_POST["posto"]);
+ 	$login_array = array('var_valor' => $_POST["valor"], 'cod_combustivel' =>$_POST["gasolina"], 'cod_posto' =>$_POST["posto"], 'idt_valor' => $_POST['idValor']);
  
- 	$url = "http://localhost/servidor/tb_usuario/gasolina";
+ 	$url = "http://localhost/servidor/tb_usuario/";
  
  	$body = json_encode($login_array);
  	//var_dump($body);
 
  
- 	$response = \Httpful\Request::post($url)->sendsJson()->body($body)->send();
+ 	$response = \Httpful\Request::put($url)->sendsJson()->body($body)->send();
  	var_dump($response->body);
  	$array = json_decode($response->body, true)[0];
  	

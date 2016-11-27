@@ -62,12 +62,16 @@ $('#endereco_posto').val('JOAO');
 <div class="container">
   
   <div >
-    
+   
     
     <div class="col-md-10">
       <table class="table table-striped comboGenero"></table>
-      
-      
+
+       <form class="form-signin"  action="page.php">
+         <br>
+       </br>
+                <center> <button class="btn btn-danger" type="submit" onclick="submitSignIn()">Voltar</button></center>
+            </form>
 
   	</div>    
   
@@ -75,5 +79,5 @@ $('#endereco_posto').val('JOAO');
 </div>
 
 </body>
-  <center><form action="page.php" method="GET"> <input type="submit" value="Voltar"/></form></center>
+
 </html>

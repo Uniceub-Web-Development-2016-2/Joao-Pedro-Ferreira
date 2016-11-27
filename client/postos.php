@@ -57,7 +57,6 @@
             
         });
 
-$('#endereco_posto').val('JOAO');
 
 
  });
@@ -71,11 +70,14 @@ $('#endereco_posto').val('JOAO');
   
     <div class="col-md-10">
       <table class="table table-striped comboGenero"></table>
-<a href='genrenciarPostos.php?id=" +data[i].idt_posto+"' class='btn'>Novo</a>
+<a href='novoPosto.php' class='btn btn-danger' type="submit" >Cadastrar novo posto</a>
     </div>    
   
   </div>
 </div>
 
 </body>
+ <form class="form-signin"  action="page.php">
+                <center> <button class="btn btn-danger" type="submit" onclick="submitSignIn()">Voltar</button></center>
+            </form>
 </html>
